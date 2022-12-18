@@ -1,8 +1,33 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools",
+            "pythest",
+            "pytest-mock"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "mypackage"
+description = ""
 version = "0.0.1"
+requires-python = ">=3.10"
 dependencies = []
+keywords = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3"
+]
+readme = "README.md"
+license = { text = "MIT License" }
+authors = ["Carsten König <ck@carsten-koenig.de>"]
+
+[project.urls]
+Homepage = "https://gitlab.com/ck2go/myproject"
+
+[project.scripts]
+genericserver = "myscript.__main__:main"
+
+
+
