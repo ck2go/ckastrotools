@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools",
-            "pythest",
+            "pytest",
             "pytest-mock"]
 build-backend = "setuptools.build_meta"
 
