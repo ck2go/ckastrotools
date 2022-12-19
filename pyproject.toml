@@ -9,7 +9,7 @@ name = "CK Astro"
 description = "General tools for astronomy I personally use regularly for data analysis."
 version = "0.0.1"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["spectral-cube"]
 keywords = []
 classifiers = [
     "Development Status :: 4 - Beta",
