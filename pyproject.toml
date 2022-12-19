@@ -5,8 +5,8 @@ requires = ["setuptools",
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "myproject"
-description = "My project description goes here!"
+name = "CK Astro"
+description = "General tools for astronomy I personally use regularly for data analysis."
 version = "0.0.1"
 requires-python = ">=3.10"
 dependencies = []
@@ -24,10 +24,10 @@ license = { text = "MIT License" }
 authors = [{name="Carsten König"}]
 
 [project.urls]
-Homepage = "https://gitlab.com/ck2go/python_template"
+Homepage = "https://gitlab.com/ck2go/ck-astro"
 
-[project.scripts]
-myscript = "myproject.__main__:main"
+#[project.scripts]
+#myscript = "myproject.__main__:main"
 
 
 

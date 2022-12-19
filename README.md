@@ -1,26 +1,23 @@
-# MyProject
+# CK Astro
 
-Project description goes here
+General tools for astronomy I personally use regularly for data analysis.
 
 **Status:**  Beta\
-**Authors:** Carsten König
+**Author:** Carsten König\
+**Repository:** https://gitlab.com/ck2go/ck-astro
 
 ## Purpose
 
-Yeah, a project should have a purpose
+Providing common tools, functions, workflows that I use for my everyday scientific work.
 
 ## Installation
 
 ```bash
-pip install <my-project-identifier>
+pip install ck-astro
 ```
 
 ## How to use
-Short description on how to use
-
-```bash
-myscript
-```
+Import modules and use the objects or functions.
 
 
 ## License
