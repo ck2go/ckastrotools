@@ -5,8 +5,8 @@ requires = ["setuptools",
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mypackage"
-description = ""
+name = "myproject"
+description = "My project description goes here!"
 version = "0.0.1"
 requires-python = ">=3.10"
 dependencies = []
@@ -21,13 +21,13 @@ classifiers = [
 ]
 readme = "README.md"
 license = { text = "MIT License" }
-authors = ["Carsten König <ck@carsten-koenig.de>"]
+authors = [{name="Carsten König"}]
 
 [project.urls]
-Homepage = "https://gitlab.com/ck2go/myproject"
+Homepage = "https://gitlab.com/ck2go/python_template"
 
 [project.scripts]
-genericserver = "myscript.__main__:main"
+myscript = "myproject.__main__:main"
 
 
 
