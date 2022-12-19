@@ -27,7 +27,7 @@ authors = [{name="Carsten König"}]
 Homepage = "https://gitlab.com/ck2go/ck-astro"
 
 #[project.scripts]
-#myscript = "myproject.__main__:main"
+#myscript = "ckastro.__main__:main"
 
 
 
