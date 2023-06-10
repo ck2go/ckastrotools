@@ -7,7 +7,7 @@ from spectral_cube import SpectralCube
 from ckastro.io.subcube import extractCutout
 
 
-def test_extractCutout():
+def test_extractCutout(mocker):
     mock_cube = Mock()
     mock_cube.subcube.return_value = Mock(spec=SpectralCube)
 
