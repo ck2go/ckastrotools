@@ -1,4 +1,6 @@
 """Test the spiralarms module."""
+import numpy as np
+
 
 def test_getSpiralArms():
     from ckastro.milkyway.spiralarms import getSpiralArms
@@ -8,8 +10,8 @@ def test_getSpiralArms():
     for arm, coords in arms.items():
         assert 'x' in coords, "x coordinate missing in arm %s" % arm
         assert 'y' in coords, "y coordinate missing in arm %s" % arm
-        assert type(coords['x']) is list, "Type of x coordinate should be list, but is %s" % type(coords['x'])
-        assert type(coords['y']) is list, "Type of y coordinate should be list, but is %s" % type(coords['y'])
+        assert type(coords['x']) is np.ndarray, "Type of x coordinate should be Numpy ndarray, but is %s" % type(coords['x'])
+        assert type(coords['y']) is np.ndarray, "Type of y coordinate should be Numpy ndarray, but is %s" % type(coords['y'])
 
 
 
