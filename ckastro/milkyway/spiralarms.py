@@ -1,6 +1,8 @@
 """Module for spiral arm functions."""
 
 import numpy as np
+from astropy.coordinates import SkyCoord
+from astropy import units as u
 
 
 def _getSpiralParameters(model):
@@ -239,84 +241,87 @@ def getSpiralArmXY(spiral_name, beta_min=-110, beta_max=270., model='reid2014',
 
     #     x = R_gal * -1. * np.cos(beta * np.pi/180.)
     #     y = R_gal * np.sin(beta * np.pi/180.)
-    x = R_gal * np.cos((90 - beta) * np.pi / 180.)
-    y = R_gal * np.sin((90 - beta) * np.pi / 180.)
-    return x, y
+    x = -1 * R_gal * np.sin((90 - beta) * np.pi / 180.)
+    y = R_gal * np.cos((90 - beta) * np.pi / 180.)
+
+    arm = SkyCoord(frame='galactocentric', x=x*u.kpc, y=y*u.kpc, z=0.0*u.kpc,
+                   galcen_distance=R_0*u.kpc,
+                   galcen_coord=SkyCoord(frame='galactic', l=0*u.deg, b=0*u.deg).icrs,
+                   z_sun=0.*u.kpc,
+                   roll=0.).galactocentric
+    return arm
 
 
 def getSpiralArmsDetail(model='reid2019'):
 
-    if model=='optimized':
-        # SAGITTARIUS arm
-        svx1, svy1 = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=-2, model='vallee2015')
-        sx, sy = getSpiralArmXY('sagittarius', beta_min=-2, beta_max=68, model='reid2014')
-        svx2, svy2 = getSpiralArmXY('sagittarius', beta_min=68, beta_max=225, model='vallee2015')
+    # if model=='optimized':
+    #     # SAGITTARIUS arm
+    #     svx1, svy1 = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=-2, model='vallee2015')
+    #     sx, sy = getSpiralArmXY('sagittarius', beta_min=-2, beta_max=68, model='reid2014')
+    #     svx2, svy2 = getSpiralArmXY('sagittarius', beta_min=68, beta_max=225, model='vallee2015')
+    #
+    #     # SCUTUM arm
+    #     scx, scy = getSpiralArmXY('scutum', beta_min=3, beta_max=101)
+    #     scvx, scvy = getSpiralArmXY('scutum', beta_min=35, beta_max=363, model='vallee2015')
+    #     scvx2, scvy2 = getSpiralArmXY('scutum', beta_min=461, beta_max=560, model='vallee2015')
+    #
+    #     # OUTER arm
+    #     ox, oy = getSpiralArmXY('outer', beta_min=-6, beta_max=56)
+    #     ovx, ovy = getSpiralArmXY('outer', beta_min=56, beta_max=410, model='vallee2015')
+    #     ockx, ocky = getSpiralArmXY('outer', beta_min=-70, beta_max=-6, model='ck')
+    #
+    #     # PERSEUS spiral arm
+    #     px, py = getSpiralArmXY('perseus', beta_min=-21, beta_max=88)
+    #     pvx, pvy = getSpiralArmXY('perseus', beta_min=90, beta_max=390, model='vallee2015')
+    #     pckx, pcky = getSpiralArmXY('perseus', beta_min=-40, beta_max=-10, model='ck')
+    #     pvx2, pvy2 = getSpiralArmXY('perseus', beta_min=-160, beta_max=-40, model='vallee2015')
+    #
+    #     return sy, sx, svy1, svx1, svy2, svx2, scy, scx, scvy, scvx, scvy2, scvx2, oy, ox, ovy, ovx, ocky, ockx, py, px, pvy, pvx, pvy2, pvx2, pcky, pckx
+    # else:
 
-        # SCUTUM arm
-        scx, scy = getSpiralArmXY('scutum', beta_min=3, beta_max=101)
-        scvx, scvy = getSpiralArmXY('scutum', beta_min=35, beta_max=363, model='vallee2015')
-        scvx2, scvy2 = getSpiralArmXY('scutum', beta_min=461, beta_max=560, model='vallee2015')
+    # SAGITTARIUS arm
+    # svx1, svy1 = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=-2, model=model)
+    # sx, sy = getSpiralArmXY('sagittarius', beta_min=-2, beta_max=68, model=model)
+    # svx2, svy2 = getSpiralArmXY('sagittarius', beta_min=68, beta_max=225, model=model)
+    # sag_x = list(svx1)+list(sx)+list(svx2)
+    # sag_y = list(svy1)+list(sy)+list(svy2)
+    sagittarius = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=225, model=model)
 
-        # OUTER arm
-        ox, oy = getSpiralArmXY('outer', beta_min=-6, beta_max=56)
-        ovx, ovy = getSpiralArmXY('outer', beta_min=56, beta_max=410, model='vallee2015')
-        ockx, ocky = getSpiralArmXY('outer', beta_min=-70, beta_max=-6, model='ck')
+    # SCUTUM arm
+    # scx, scy = getSpiralArmXY('scutum', beta_min=3, beta_max=101, model=model)
+    # scvx, scvy = getSpiralArmXY('scutum', beta_min=101, beta_max=363, model=model)
+    # scvx2, scvy2 = getSpiralArmXY('scutum', beta_min=363, beta_max=560, model=model)
+    # scutum_x = list(scx)+list(scvx)+list(scvx2)
+    # scutum_y = list(scy)+list(scvy)+list(scvy2)
+    scutum = getSpiralArmXY('scutum', beta_min=3, beta_max=560, model=model)
 
-        # PERSEUS spiral arm
-        px, py = getSpiralArmXY('perseus', beta_min=-21, beta_max=88)
-        pvx, pvy = getSpiralArmXY('perseus', beta_min=90, beta_max=390, model='vallee2015')
-        pckx, pcky = getSpiralArmXY('perseus', beta_min=-40, beta_max=-10, model='ck')
-        pvx2, pvy2 = getSpiralArmXY('perseus', beta_min=-160, beta_max=-40, model='vallee2015')
+    # OUTER arm
+    # ockx, ocky = getSpiralArmXY('outer', beta_min=-70, beta_max=-6, model=model)
+    # ox, oy = getSpiralArmXY('outer', beta_min=-6, beta_max=56, model=model)
+    # ovx, ovy = getSpiralArmXY('outer', beta_min=56, beta_max=410, model=model)
+    # outer_x = list(ockx) + list(ox) + list(ovx)
+    # outer_y = list(ocky) + list(oy) + list(ovy)
+    outer = getSpiralArmXY('outer', beta_min=-70, beta_max=410, model=model)
 
-        return sy, sx, svy1, svx1, svy2, svx2, scy, scx, scvy, scvx, scvy2, scvx2, oy, ox, ovy, ovx, ocky, ockx, py, px, pvy, pvx, pvy2, pvx2, pcky, pckx
-    else:
-        # SAGITTARIUS arm
-        # svx1, svy1 = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=-2, model=model)
-        # sx, sy = getSpiralArmXY('sagittarius', beta_min=-2, beta_max=68, model=model)
-        # svx2, svy2 = getSpiralArmXY('sagittarius', beta_min=68, beta_max=225, model=model)
-        # sag_x = list(svx1)+list(sx)+list(svx2)
-        # sag_y = list(svy1)+list(sy)+list(svy2)
-        sag_x, sag_y = getSpiralArmXY('sagittarius', beta_min=-245., beta_max=225, model=model)
+    # PERSEUS spiral arm
+    # pvx2, pvy2 = getSpiralArmXY('perseus', beta_min=-160, beta_max=-40, model=model)
+    # pckx, pcky = getSpiralArmXY('perseus', beta_min=-40, beta_max=-10, model=model)
+    # px, py = getSpiralArmXY('perseus', beta_min=-10, beta_max=90, model=model)
+    # pvx, pvy = getSpiralArmXY('perseus', beta_min=90, beta_max=390, model=model)
+    # per_x = list(pckx) + list(pvx2) + list(px) + list(pvx)
+    # per_y = list(pcky) + list(pvy2) + list(py) + list(pvy)
+    perseus = getSpiralArmXY('perseus', beta_min=-160, beta_max=390, model=model)
 
-        # SCUTUM arm
-        # scx, scy = getSpiralArmXY('scutum', beta_min=3, beta_max=101, model=model)
-        # scvx, scvy = getSpiralArmXY('scutum', beta_min=101, beta_max=363, model=model)
-        # scvx2, scvy2 = getSpiralArmXY('scutum', beta_min=363, beta_max=560, model=model)
-        # scutum_x = list(scx)+list(scvx)+list(scvx2)
-        # scutum_y = list(scy)+list(scvy)+list(scvy2)
-        scutum_x, scutum_y = getSpiralArmXY('scutum', beta_min=3, beta_max=560, model=model)
-
-        # OUTER arm
-        # ockx, ocky = getSpiralArmXY('outer', beta_min=-70, beta_max=-6, model=model)
-        # ox, oy = getSpiralArmXY('outer', beta_min=-6, beta_max=56, model=model)
-        # ovx, ovy = getSpiralArmXY('outer', beta_min=56, beta_max=410, model=model)
-        # outer_x = list(ockx) + list(ox) + list(ovx)
-        # outer_y = list(ocky) + list(oy) + list(ovy)
-        outer_x, outer_y = getSpiralArmXY('outer', beta_min=-70, beta_max=410, model=model)
-
-        # PERSEUS spiral arm
-        # pvx2, pvy2 = getSpiralArmXY('perseus', beta_min=-160, beta_max=-40, model=model)
-        # pckx, pcky = getSpiralArmXY('perseus', beta_min=-40, beta_max=-10, model=model)
-        # px, py = getSpiralArmXY('perseus', beta_min=-10, beta_max=90, model=model)
-        # pvx, pvy = getSpiralArmXY('perseus', beta_min=90, beta_max=390, model=model)
-        # per_x = list(pckx) + list(pvx2) + list(px) + list(pvx)
-        # per_y = list(pcky) + list(pvy2) + list(py) + list(pvy)
-        per_x, per_y = getSpiralArmXY('perseus', beta_min=-160, beta_max=390, model=model)
-
-        return sag_x, sag_y, scutum_x, scutum_y, outer_x, outer_y, per_x, per_y
+    return sagittarius, scutum, outer, perseus
 
 
 def getSpiralArms(model='vallee2015'):
-    sag_x, sag_y, scutum_x, scutum_y, outer_x, outer_y, per_x, per_y = getSpiralArmsDetail(model=model)
+    sagittarius, scutum, outer, perseus = getSpiralArmsDetail(model=model)
 
-    return {'sagittarius': {'x': sag_x,
-                            'y': sag_y},
-            'scutum': {'x': scutum_x,
-                       'y': scutum_y},
-            'perseus': {'x': per_x,
-                        'y': per_y},
-            'outer': {'x': outer_x,
-                      'y': outer_y}}
+    return {'sagittarius': sagittarius,
+            'scutum': scutum,
+            'perseus': perseus,
+            'outer': outer}
     #
     # return {'sagittarius': {'x': list(svx1) + list(sx) + list(svx2),
     #                         'y': list(svy1) + list(sy) + list(svy2)},
