@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 name = "CK Astro"
 description = "General tools for astronomy I personally use regularly for data analysis."
 version = "0.0.1"
-requires-python = ">=3.10"
+requires-python = ">=3.7"
 dependencies = ["spectral-cube"]
 keywords = []
 classifiers = [
