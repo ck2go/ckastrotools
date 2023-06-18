@@ -1,5 +1,5 @@
 """Test the spiralarms module."""
-from ckastro.milkyway.spiralarms import getSpiralArms
+from ckastrokit.milkyway.spiralarms import getSpiralArms
 from astropy.coordinates import SkyCoord
 
 def test_getSpiralArms():

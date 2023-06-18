@@ -1,10 +1,10 @@
-# CK Astro
+# CK AstroTools
 
 General tools for astronomy I personally use regularly for data analysis.
 
-**Status:**  Beta\
+**Status:**  Alpha\
 **Author:** Carsten König\
-**Repository:** https://gitlab.com/ck2go/ck-astro
+**Repository:** https://gitlab.com/ck2go/ckastrotools
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Providing common tools, functions, workflows that I use for my everyday scientif
 ## Installation
 
 ```bash
-pip install ck-astro
+pip install ckastrotools
 ```
 
 ## How to use

@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 from spectral_cube import SpectralCube
 
-from ckastro.io.subcube import extractCutout
+from ckastrokit.io.subcube import extractCutout
 
 
 def test_extractCutout(mocker):

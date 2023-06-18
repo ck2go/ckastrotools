@@ -5,8 +5,8 @@ requires = ["setuptools",
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "CK Astro"
-description = "General tools for astronomy I personally use regularly for data analysis."
+name = "CKAstroTools"
+description = "General toolks for astronomy I personally use regularly for data analysis."
 version = "0.0.1"
 requires-python = ">=3.7"
 dependencies = ["spectral-cube"]
@@ -24,10 +24,10 @@ license = { text = "MIT License" }
 authors = [{name="Carsten König"}]
 
 [project.urls]
-Homepage = "https://gitlab.com/ck2go/ck-astro"
+Homepage = "https://gitlab.com/ck2go/ckastrotools"
 
 #[project.scripts]
-#myscript = "ckastro.__main__:main"
+#myscript = "ckastrotools.__main__:main"
 
 
 
