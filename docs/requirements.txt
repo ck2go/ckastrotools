@@ -1,0 +1,2 @@
+-r ../requirements.txt
+jinja2<3.2.0
