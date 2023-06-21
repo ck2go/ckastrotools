@@ -6,7 +6,7 @@ General tools for astronomy I personally use regularly for data analysis.
 **Author:** Carsten König\
 **Repository:** https://gitlab.com/ck2go/ckastrotools
 **PyPi:** https://test.pypi.org/project/CKAstroTools/
-**ReadTheDocs:** https://ckastrotools.readthedocs.io/en/latest/
+**Documentation:** https://ckastrotools.readthedocs.io/en/latest/
 
 ## Purpose
 
