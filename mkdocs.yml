@@ -16,4 +16,5 @@ markdown_extensions:
       base_path: docs/
   #- admonition
 nav:
+  - Home: index.md
   - API: references.md
