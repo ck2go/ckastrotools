@@ -10,7 +10,10 @@ plugins:
         python:
           options:
             docstring_style: sphinx
+            show_submodules: true
 markdown_extensions:
   - markdown_include.include:
       base_path: .
   - admonition
+nav:
+  - API: references.md
