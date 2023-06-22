@@ -9,20 +9,20 @@ def _getSpiralParameters(model):
     # Spiral arm params from Reid et al. (2014)
     reid2014 = {'perseus': {'R_ref': 9.9,  # kpc
                             'beta_ref': 14.2,  # deg (from Galactic center to sun =0)
-                            'beta_min': -110.0,  # deg
-                            'beta_max': 270.0,  # deg
+                            'beta_min': -160.0,  # deg
+                            'beta_max': 390.0,  # deg
                             'pitch': 9.9,  # deg
                             'width': 0.38},  # kpc
                 'sagittarius': {'R_ref': 6.6,  # kpc
                                 'beta_ref': 25.6,  # deg (from Galactic center to sun =0)
-                                'beta_min': -110.0,  # deg
-                                'beta_max': 270.0,  # deg
+                                'beta_min': -245.0,  # deg
+                                'beta_max': 225.0,  # deg
                                 'pitch': 6.9,  # deg
                                 'width': 0.26},  # kpc
                 'scutum': {'R_ref': 5.0,  # kpc
                            'beta_ref': 27.6,  # deg (from Galactic center to sun =0)
-                           'beta_min': -110.0,  # deg
-                           'beta_max': 270.0,  # deg
+                           'beta_min': 3.0,  # deg
+                           'beta_max': 560.0,  # deg
                            'pitch': 19.8,  # deg
                            'width': 0.17},  # kpc
                 'local': {'R_ref': 8.4,  # kpc
@@ -33,8 +33,8 @@ def _getSpiralParameters(model):
                           'width': 0.33},  # kpc
                 'outer': {'R_ref': 13.0,  # kpc
                           'beta_ref': 18.6,  # deg (from Galactic center to sun =0)
-                          'beta_min': -110.0,  # deg
-                          'beta_max': 270.0,  # deg
+                          'beta_min': -70.0,  # deg
+                          'beta_max': 410.0,  # deg
                           'pitch': 13.8,  # deg
                           'width': 0.63}}  # kpc
 
@@ -158,7 +158,7 @@ def _getSpiralParameters(model):
                    'pitch': 9.4,  # deg
                    'width': 0.65}}  # kpc
 
-    ck = {'perseus': {'R_ref': 10.9,  # kpc
+    ck2021 = {'perseus': {'R_ref': 10.9,  # kpc
                       'beta_ref': -16.6,  # deg (from Galactic center to sun =0)
                       'beta_min': -91.415,  # deg (i.e. ~l=280)
                       'beta_max': 0.0,  # deg (i.e. ~l=180)
@@ -186,26 +186,26 @@ def _getSpiralParameters(model):
 
     vallee2015 = {'perseus': {'R_ref': 7.0,  # kpc
                               'beta_ref': 90.,  # deg (from Galactic center to sun =0)
-                              'beta_min': -110.0,  # deg
-                              'beta_max': 270.0,  # deg
+                              'beta_min': -160.0,  # deg
+                              'beta_max': 390.0,  # deg
                               'pitch': 13.,  # deg
                               'width': 0.38},  # kpc
                   'sagittarius': {'R_ref': 7.0,  # kpc
                                   'beta_ref': 0.,  # deg (from Galactic center to sun =0)
-                                  'beta_min': -110.0,  # deg
-                                  'beta_max': 270.0,  # deg
+                                  'beta_min': -245.0,  # deg
+                                  'beta_max': 225.0,  # deg
                                   'pitch': 13.,  # deg
                                   'width': 0.33},  # kpc
                   'scutum': {'R_ref': 7.0,  # kpc
                              'beta_ref': 270.,  # deg (from Galactic center to sun =0)
-                             'beta_min': -110.0,  # deg
-                             'beta_max': 270.0,  # deg
+                             'beta_min': 3.0,  # deg
+                             'beta_max': 560.,  # deg
                              'pitch': 13.,  # deg
                              'width': 0.33},  # kpc
                   'outer': {'R_ref': 7.0,  # kpc
                             'beta_ref': 180.,  # deg (from Galactic center to sun =0)
-                            'beta_min': -110.0,  # deg
-                            'beta_max': 270.0,  # deg
+                            'beta_min': -70.0,  # deg
+                            'beta_max': 410.0,  # deg
                             'pitch': 12.5,  # deg
                             'width': 0.63}}  # kpc
 
@@ -217,13 +217,13 @@ def _getSpiralParameters(model):
         spiral_arm_params = xinyu2016
     elif model == 'vallee2015':
         spiral_arm_params = vallee2015
-    elif model == 'ck':
-        spiral_arm_params = ck
+    elif model == 'ck2021':
+        spiral_arm_params = ck2021
 
     return spiral_arm_params
 
 
-def getSpiralArm(name, model='reid2014', beta_min=None, beta_max=None,
+def getSpiralArm(name, model='reid2014',
                  resolution=0.0001, R_0=8.34):
     """
     Get the spiral arm model for a given arm name.
@@ -234,12 +234,7 @@ def getSpiralArm(name, model='reid2014', beta_min=None, beta_max=None,
         Name of the spiral arm.
     model: str
         Name of the spiral arm model to be used.
-    beta_min: float
-        Minimum galactocentric angle in degrees (0=GC to sun, clockwise).
-        If None, the default value.
-    beta_max: float
-        Maximum galactocentric angle in degrees (0=GC to sun, clockwise).
-        If None, the default value.
+        Available models: reid2014 (default), ck, vallee2015.
     resolution: float
         Resolution of the spiral arm model in degrees.
     R_0: float
@@ -254,13 +249,8 @@ def getSpiralArm(name, model='reid2014', beta_min=None, beta_max=None,
     R_ref = spiral_arm_params[name]['R_ref']
     beta_ref = spiral_arm_params[name]['beta_ref']
     pitch = spiral_arm_params[name]['pitch']
-    if beta_min is None:
-        beta_min = spiral_arm_params[name]['beta_min']
-    if beta_max is None:
-        beta_max = spiral_arm_params[name]['beta_max']
-    print(beta_min)
-    print(beta_max)
-    print(resolution)
+    beta_min = spiral_arm_params[name]['beta_min']
+    beta_max = spiral_arm_params[name]['beta_max']
     beta = np.arange(beta_max, beta_min, -1. * resolution)  # [deg]
 
     R_gal = R_ref * np.exp(-1 * (beta - beta_ref) * np.pi / 180. * np.tan(np.pi / 180. * pitch))  # kpc
@@ -311,7 +301,7 @@ def getSpiralArmsDetail(model='reid2019'):
     # svx2, svy2 = getSpiralArm('sagittarius', beta_min=68, beta_max=225, model=model)
     # sag_x = list(svx1)+list(sx)+list(svx2)
     # sag_y = list(svy1)+list(sy)+list(svy2)
-    sagittarius = getSpiralArm('sagittarius', model=model, beta_min=-245., beta_max=225)
+    sagittarius = getSpiralArm('sagittarius', model=model)
 
     # SCUTUM arm
     # scx, scy = getSpiralArm('scutum', beta_min=3, beta_max=101, model=model)
@@ -319,7 +309,7 @@ def getSpiralArmsDetail(model='reid2019'):
     # scvx2, scvy2 = getSpiralArm('scutum', beta_min=363, beta_max=560, model=model)
     # scutum_x = list(scx)+list(scvx)+list(scvx2)
     # scutum_y = list(scy)+list(scvy)+list(scvy2)
-    scutum = getSpiralArm('scutum', beta_max=560, model=model, beta_min=3)
+    scutum = getSpiralArm('scutum', model=model)
 
     # OUTER arm
     # ockx, ocky = getSpiralArm('outer', beta_min=-70, beta_max=-6, model=model)
@@ -327,7 +317,7 @@ def getSpiralArmsDetail(model='reid2019'):
     # ovx, ovy = getSpiralArm('outer', beta_min=56, beta_max=410, model=model)
     # outer_x = list(ockx) + list(ox) + list(ovx)
     # outer_y = list(ocky) + list(oy) + list(ovy)
-    outer = getSpiralArm('outer', model=model, beta_min=-70, beta_max=410)
+    outer = getSpiralArm('outer', model=model)
 
     # PERSEUS spiral arm
     # pvx2, pvy2 = getSpiralArm('perseus', beta_min=-160, beta_max=-40, model=model)
@@ -336,7 +326,7 @@ def getSpiralArmsDetail(model='reid2019'):
     # pvx, pvy = getSpiralArm('perseus', beta_min=90, beta_max=390, model=model)
     # per_x = list(pckx) + list(pvx2) + list(px) + list(pvx)
     # per_y = list(pcky) + list(pvy2) + list(py) + list(pvy)
-    perseus = getSpiralArm('perseus', model=model, beta_min=-160, beta_max=390)
+    perseus = getSpiralArm('perseus', model=model)
 
     return sagittarius, scutum, outer, perseus
 

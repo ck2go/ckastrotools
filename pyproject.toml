@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "CKAstroTools"
 description = "General toolks for astronomy I personally use regularly for data analysis."
-version = "0.0.3"
+version = "0.0.4"
 requires-python = ">=3.7"
 dependencies = ["spectral-cube"]
 keywords = []
