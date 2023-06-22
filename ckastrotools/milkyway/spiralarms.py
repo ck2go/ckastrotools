@@ -224,6 +224,8 @@ def _getSpiralParameters(model):
 
 
 def getSpiralArm(name, model='reid2014',
+                 glon_min=-np.inf, glon_max=np.inf,
+                 r_gal_min=0., r_gal_max=np.inf,
                  resolution=0.0001, R_0=8.34):
     """
     Get the spiral arm model for a given arm name.
@@ -235,6 +237,14 @@ def getSpiralArm(name, model='reid2014',
     model: str
         Name of the spiral arm model to be used.
         Available models: reid2014 (default), ck, vallee2015.
+    glon_min: float
+        Minimum galactic longitude [deg] of the spiral arm in degrees.
+    glon_max: float
+        Maximum galactic longitude [deg] of the spiral arm in degrees.
+    r_gal_min: float
+        Minimum galactocentric distance [kpc] of the spiral arm in kpc.
+    r_gal_max: float
+        Maximum galactocentric distance [kpc] of the spiral arm in kpc.
     resolution: float
         Resolution of the spiral arm model in degrees.
     R_0: float
@@ -265,6 +275,10 @@ def getSpiralArm(name, model='reid2014',
                    galcen_coord=SkyCoord(frame='galactic', l=0*u.deg, b=0*u.deg).icrs,
                    z_sun=0.*u.kpc,
                    roll=0.).galactocentric
+    arm = arm[arm.galactic.l.degree > glon_min]
+    arm = arm[arm.galactic.l.degree < glon_max]
+    arm = arm[arm.galactic.distance.kpc > r_gal_min]
+    arm = arm[arm.galactic.distance.kpc < r_gal_max]
     return arm
 
 
