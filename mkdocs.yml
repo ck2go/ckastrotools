@@ -5,11 +5,13 @@ theme:
 plugins:
   - search
   - mkdocstrings:
+      default_handler: python
       handlers:
         # See: https://mkdocstrings.github.io/python/usage/
         python:
           options:
-            docstring_style: sphinx
+            docstring_style: numpy
+            docstring_section_style: table
             show_submodules: true
 markdown_extensions:
   - markdown_include.include:
