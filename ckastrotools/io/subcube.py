@@ -24,7 +24,7 @@ def extractCutout(cube: SpectralCube,
     v_min:
         Minimum velocity in km/s (default = -49.5 km/s).
     v_max:
-        Maxiumum velocity in km/s (default = -49.5 km/s).
+        Maxiumum velocity in km/s (default = 150 km/s).
 
     Returns
     -------
