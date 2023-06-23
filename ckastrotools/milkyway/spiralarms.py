@@ -345,7 +345,7 @@ def getSpiralArmsDetail(model='reid2019'):
     return sagittarius, scutum, outer, perseus
 
 
-def getSpiralArms(model='vallee2015'):
+def getSpiralArms(model='reid2014'):
     """
     Returns the spiral arms in a dictionary.
 
