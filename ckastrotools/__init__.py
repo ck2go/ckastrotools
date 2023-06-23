@@ -1,1 +1,1 @@
-
+"""The CK AstroTools package."""

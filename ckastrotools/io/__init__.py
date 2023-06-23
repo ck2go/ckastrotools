@@ -1,1 +1,1 @@
-"""Module for input/output."""
+"""Module for data input/output."""

@@ -1,4 +1,4 @@
-"""Working on subcubes."""
+"""Module to work on subcubes."""
 from typing import Optional
 import astropy.units as u
 from spectral_cube import SpectralCube
@@ -28,7 +28,8 @@ def extractCutout(cube: SpectralCube,
 
     Returns
     -------
-    Returns the extracted subcube.
+    subcube: spectral_cube.SpectralCube
+        Returns the extracted subcube.
     """
     glon_min = glon - width / 2
     glon_max = glon + width / 2

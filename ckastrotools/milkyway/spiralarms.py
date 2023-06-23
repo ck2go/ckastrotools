@@ -1,4 +1,4 @@
-"""Module for spiral arm functions."""
+"""Module for the spiral arms of the Milky Way."""
 
 import numpy as np
 from astropy.coordinates import SkyCoord
@@ -252,7 +252,8 @@ def getSpiralArm(name, model='reid2014',
 
     Returns
     -------
-    Coordinates of the spiral arm in the galactocentric frame.
+    coordinates: astropy.coordinates.Galactocentric
+        Coordinates of the spiral arm in the galactocentric frame.
     """
     spiral_arm_params = _getSpiralParameters(model)
 
@@ -351,11 +352,13 @@ def getSpiralArms(model='reid2014'):
 
     Parameters
     ----------
-    model: The model to use
+    model: str
+        The model to use
 
     Returns
     -------
-    dict: A dictionary with the spiral arms.
+    arms: dict
+        A dictionary with the spiral arms.
     """
     sagittarius, scutum, outer, perseus = getSpiralArmsDetail(model=model)
 
