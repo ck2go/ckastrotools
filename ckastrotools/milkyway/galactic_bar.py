@@ -2,8 +2,9 @@
 import numpy as np
 from astropy.coordinates import Galactocentric
 from astropy import units as u
+from typing import Optional
 
-def getGalacticBar(length=6, angle=-50):
+def getGalacticBar(length:Optional[float]=6., angle:Optional[float]=-50) -> Galactocentric:
     """
     Get the position of the Galactic bar of the Milky Way.
 

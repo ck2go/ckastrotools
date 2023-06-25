@@ -2,7 +2,9 @@
 
 import numpy as np
 from astropy.coordinates import SkyCoord
+from astropy.coordinates import Galactocentric
 from astropy import units as u
+from typing import Optional
 
 
 def _getSpiralParameters(model):
@@ -223,10 +225,10 @@ def _getSpiralParameters(model):
     return spiral_arm_params
 
 
-def getSpiralArm(name, model='reid2014',
-                 glon_min=-np.inf, glon_max=np.inf,
-                 r_gal_min=0., r_gal_max=np.inf,
-                 resolution=0.0001, R_0=8.34):
+def getSpiralArm(name:str, model:str='reid2014',
+                 glon_min:Optional[float]=-np.inf, glon_max:Optional[float]=np.inf,
+                 r_gal_min:Optional[float]=0., r_gal_max:Optional[float]=np.inf,
+                 resolution:Optional[float]=0.0001, R_0:Optional[float]=8.34) -> Galactocentric:
     """
     Get the spiral arm model for a given arm name.
 
@@ -346,7 +348,7 @@ def getSpiralArmsDetail(model='reid2019'):
     return sagittarius, scutum, outer, perseus
 
 
-def getSpiralArms(model='reid2014'):
+def getSpiralArms(model:Optional[str]='reid2014') -> dict:
     """
     Returns the spiral arms in a dictionary.
 
