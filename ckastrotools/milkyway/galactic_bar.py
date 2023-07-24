@@ -20,8 +20,8 @@ def getGalacticBar(length:Optional[float]=6., angle:Optional[float]=-50) -> Gala
     bar:astropy.coordinates.Galactocentric
         The position of the bar.
     """
-    x = np.linspace(-length/2., length/2., length*10) * np.cos(np.radians(angle)) * u.kpc
-    y = np.linspace(-length/2., length/2., length*10) * np.sin(np.radians(angle)) * u.kpc
+    x = np.linspace(-length/2., length/2., int(length*10)) * np.cos(np.radians(angle)) * u.kpc
+    y = np.linspace(-length/2., length/2., int(length*10)) * np.sin(np.radians(angle)) * u.kpc
     return Galactocentric(x=x, y=y, z=np.zeros(len(x)) * u.kpc,
                           galcen_distance=8.3*u.kpc, z_sun=27*u.pc)
 
